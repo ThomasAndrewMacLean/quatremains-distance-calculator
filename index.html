@@ -160,13 +160,13 @@
 
         formm.addEventListener("submit", (e) => {
             e.preventDefault()
-            // const data = autocomplete.getPlace()
-            // const loc = data.geometry.location;
+            const data = autocomplete.getPlace()
+            const loc = data.geometry.location;
 
-            //  const distanceCrow = getDistanceFromLatLonInKm(latHome, lngHome,loc.lat(), loc.lng() )
-            result.innerText = "€ 180"
+            const distanceCrow = getDistanceFromLatLonInKm(latHome, lngHome, loc.lat(), loc.lng())
+            result.innerText = "€ " + Math.round(distanceCrow)
             result.classList.add("show")
-            //  console.log(distanceCrow)
+            console.log(distanceCrow)
         })
 
         var autocomplete = new google.maps.places.Autocomplete(mappp, {});
