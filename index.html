@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Transportation</title>
+    <meta name="description" content="Calculate the transportation costs" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlZNtBDRqdNN8v7yX2yleYTRoCZLNf9C8&libraries=places">
+    </script>
+</head>
+
+<body>
+
+    <style>
+        body {
+            background: #F3F1E8;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 14px;
+            letter-spacing: .06em;
+            line-height: 1.6em;
+            text-transform: none;
+            color: #374b5d;
+        }
+
+        h1 {
+            letter-spacing: .04em;
+        }
+
+        button:hover {
+            color: #FFF;
+            background: #374b5d;
+        }
+
+        input {
+            outline: none;
+        }
+
+        input {
+            font-family: inherit;
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0 28px;
+            border: 1px solid #ccc;
+            background: #fafafa;
+            color: #000;
+            font-size: 14px;
+            line-height: normal;
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+
+        h2 {
+            letter-spacing: .04em;
+            font-size: 28px;
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            margin: 50px auto;
+            max-width: 550px;
+        }
+
+        .button-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        #result {
+            margin-bottom: 15px;
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 14px;
+            background: transparent;
+            color: transparent;
+            padding: 14px 35px;
+            font-weight: 700;
+            letter-spacing: 2.8px;
+            transition: 0.1s background-color linear, 0.1s color linear;
+        }
+
+        #result.show {
+            background: #B2A160;
+            color: #FFFFFF;
+        }
+
+        button {
+            margin-bottom: 15px;
+            outline: none;
+            font-family: 'Open Sans Condensed', sans-serif;
+            background-color: transparent;
+            color: #374b5d;
+            border: 2px solid #374b5d;
+            font-size: 14px;
+            letter-spacing: 2.8px;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 14px 35px;
+            cursor: pointer;
+            transition: 0.1s background-color linear, 0.1s color linear;
+        }
+    </style>
+    <div class="container">
+        <header>
+            <h2>
+                TRANSPORTATION
+            </h2>
+        </header>
+
+        <main>
+            <p>Avoid unnecessary risk and let Quatre Mains handle transportation of your precious piano. With utmost
+                care we will transport your piano and if you wish tune it at destination. </p>
+
+            <form id="form">
+                <label for="mappp">Type in your address <span>*</span></label>
+                <input name="dream" type="text" aria-labelledby="calculate-button" id="mappp" required />
+                <div class="button-wrap">
+                    <button type="submit" id="calculate-button">Calculate</button>
+                    <span id="result">150€</span>
+                </div>
+            </form>
+
+
+        </main>
+    </div>
+
+    <script>
+        const latHome = 51.0547085;
+        const lngHome = 3.7275505;
+
+        const mappp = document.getElementById("mappp");
+        const formm = document.getElementById("form");
+        const result = document.getElementById("result");
+
+
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(lat2 - lat1); // deg2rad below
+            var dLon = deg2rad(lon2 - lon1);
+            var a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+            return d;
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI / 180)
+        }
+
+        formm.addEventListener("submit", (e) => {
+            e.preventDefault()
+            // const data = autocomplete.getPlace()
+            // const loc = data.geometry.location;
+
+            //  const distanceCrow = getDistanceFromLatLonInKm(latHome, lngHome,loc.lat(), loc.lng() )
+            result.innerText = "€ 180"
+            result.classList.add("show")
+            //  console.log(distanceCrow)
+        })
+
+        var autocomplete = new google.maps.places.Autocomplete(mappp, {});
+    </script>
+</body>
+
+</html>
