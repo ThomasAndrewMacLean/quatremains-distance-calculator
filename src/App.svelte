@@ -24,7 +24,19 @@
     .then(data => (dateReserved = data));
 
   onMount(() => {
-    autoComplete = new google.maps.places.Autocomplete(autoCompleteInput, {});
+    autoComplete = new google.maps.places.Autocomplete(autoCompleteInput, {
+      componentRestrictions: { country: ["be", "nl", "fr", "de"] }
+    });
+
+    // HACK TO PREVENT AUTOCOMPLETE
+    var observerHack = new MutationObserver(function() {
+      observerHack.disconnect();
+      autoCompleteInput.autocomplete = "new-password";
+    });
+    observerHack.observe(autoCompleteInput, {
+      attributes: true,
+      attributeFilter: ["autocomplete"]
+    });
   });
   let submit = e => {
     e.preventDefault();
@@ -197,7 +209,7 @@
         </div>
       </div>
 
-      <label for="address">
+      <label for="plaatsnaam">
         {labels.address || 'Type in your address'}
         <span>*</span>
       </label>
@@ -207,7 +219,8 @@
         name="address"
         type="text"
         id="address"
-        required />
+        required
+        autocomplete="off" />
 
       {#if partOneOfFormComplete}
         <h4>

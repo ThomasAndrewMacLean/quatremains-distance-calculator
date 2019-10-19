@@ -139,3 +139,44 @@ button.secondary-btn {
 button.secondary-btn:hover {
     border: 2px solid var(--colour-text);
 }
+
+.pac-icon-marker {
+    display: none;
+}
+
+.pac-container {
+    border-radius: 20px;
+    margin-top: 10px;
+    font-family: inherit;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    padding-bottom: 10px;
+}
+
+.pac-container:after {
+    content: none !important;
+}
+
+.pac-item:first-child {
+    margin-top: 10px;
+    border-top: none;
+}
+
+.pac-item {
+    margin-left: 15px;
+    padding: 6px 18px;
+    font-size: 13px;
+}
+
+.pac-item {
+
+    padding: 0 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 30px;
+    text-align: left;
+    border-top: 1px solid #e6e6e6;
+    font-size: 11px;
+    color: #999;
+}
