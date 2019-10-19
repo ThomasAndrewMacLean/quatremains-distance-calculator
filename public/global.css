@@ -1,91 +1,141 @@
+:root {
+    --colour-background: #F3F1E8;
+    --colour-border: #ccc;
+    --colour-input-background: #fafafa;
+    --colour-white: #fff;
+    --colour-text: #374b5d;
+    --colour-gold: #b2a160;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
 body {
-	background: #F3F1E8;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 14px;
-	letter-spacing: .06em;
-	line-height: 1.6em;
-	text-transform: none;
-	color: #374b5d;
+    background: var(--colour-background);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: .06em;
+    line-height: 1.6em;
+    text-transform: none;
+    color: var(--colour-text);
 }
 
 h1 {
-	letter-spacing: .04em;
+    letter-spacing: .04em;
 }
 
-button:hover {
-	color: #FFF;
-	background: #374b5d;
-}
 
 input {
-	outline: none;
+    /* outline: none; */
 }
 
-input {
-	font-family: inherit;
-	width: 100%;
-	padding: 12px;
-	margin: 6px 0 28px;
-	border: 1px solid #ccc;
-	background: #fafafa;
-	color: #000;
-	font-size: 14px;
-	line-height: normal;
-	box-sizing: border-box;
-	border-radius: 2px;
+input,
+textarea {
+    font-family: inherit;
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 28px;
+    border: 1px solid var(--colour-border);
+    background: var(--colour-input-background);
+    color: var(--colour-text);
+    font-size: 14px;
+    line-height: normal;
+    box-sizing: border-box;
+    border-radius: 2px;
+    height: 42px;
 }
+
 
 h2 {
-	letter-spacing: .04em;
-	font-size: 28px;
-	font-family: 'Open Sans Condensed', sans-serif;
-	text-transform: uppercase;
+    letter-spacing: .04em;
+    font-size: 28px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
 }
 
 .container {
-	width: 90%;
-	margin: 50px auto;
-	max-width: 550px;
+    width: 90%;
+    margin: 50px auto;
+    max-width: 550px;
 }
 
 .button-wrap {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 #result {
-	margin-bottom: 15px;
-	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 14px;
-	background: transparent;
-	color: transparent;
-	padding: 14px 35px;
-	font-weight: 700;
-	letter-spacing: 2.8px;
-	transition: 0.1s background-color linear, 0.1s color linear;
+    margin-bottom: 15px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    background: transparent;
+    color: transparent;
+    padding: 14px 35px;
+    font-weight: 700;
+    letter-spacing: 2.8px;
+    transition: 0.1s background-color linear, 0.1s color linear;
 }
 
 #result.show {
-	background: #B2A160;
-	color: #FFFFFF;
+    background: var(--colour-gold);
+    color: var(--colour-white);
 }
 
 button {
-	margin-bottom: 15px;
-	outline: none;
-	font-family: 'Open Sans Condensed', sans-serif;
-	background-color: transparent;
-	color: #374b5d;
-	border: 2px solid #374b5d;
-	font-size: 14px;
-	letter-spacing: 2.8px;
-	text-transform: uppercase;
-	font-weight: 700;
-	padding: 14px 35px;
-	cursor: pointer;
-	transition: 0.1s background-color linear, 0.1s color linear;
+    margin-bottom: 15px;
+    /* outline: none; */
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color: transparent;
+    color: var(--colour-text);
+    border: 2px solid var(--colour-text);
+    font-size: 14px;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 14px 35px;
+    cursor: pointer;
+    transition: 0.1s background-color linear, 0.1s color linear;
+}
+
+button:hover {
+    color: var(--colour-white);
+    background: var(--colour-text);
+}
+
+button:hover:disabled {
+    pointer-events: none;
+    color: var(--colour-text);
+    background-color: transparent;
+    border: 2px solid var(--colour-text);
+}
+
+button.disabled:hover {
+    pointer-events: none;
+    color: var(--colour-text);
+    background-color: transparent;
+    border: 2px solid var(--colour-text);
+}
+
+button.disabled {
+    cursor: default;
+}
+
+button:disabled {
+    cursor: default;
+
+}
+
+button.secondary-btn {
+    border: none;
+}
+
+button.secondary-btn:hover {
+    border: 2px solid var(--colour-text);
 }
