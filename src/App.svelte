@@ -16,7 +16,7 @@
   let autoComplete;
   let autoCompleteInput;
   let submitButton;
-
+  let clickOnAddressError = false;
   let dateReserved = [];
 
   fetch(baseURL + "/available/" + namePiano)
@@ -56,8 +56,22 @@
   });
   let submit = e => {
     e.preventDefault();
+    console.log(autoComplete.getPlace());
+
     if (dateReserved.includes(date)) return;
 
+    const addressData = autoComplete.getPlace();
+
+    if (!addressData) {
+      clickOnAddressError = true;
+      return;
+    }
+
+    let addressFormatted = addressData.formatted_address;
+    const latLng =
+      addressData.geometry.location.lat() +
+      "," +
+      addressData.geometry.location.lng();
     submitButton.disabled = true;
 
     if (!partOneOfFormComplete) {
@@ -73,7 +87,8 @@
           lastname,
           email,
           date,
-          address
+          address: addressFormatted,
+          latLng
         })
       })
         .then(x => {
@@ -81,6 +96,7 @@
             submitButton.disabled = false;
 
             partOneOfFormComplete = true;
+
           }
         })
         .catch(err => {
@@ -115,6 +131,7 @@
   };
 
   let checkAddress = e => {
+    console.log(autoComplete.getPlace());
     if (!autoComplete.getPlace()) address = "";
   };
 </script>
