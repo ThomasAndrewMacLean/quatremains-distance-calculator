@@ -28,6 +28,22 @@
       componentRestrictions: { country: ["be", "nl", "fr", "de"] }
     });
 
+    // google.maps.event.addDomListener(autoCompleteInput, "keydown", function(e) {
+    //   if (
+    //     e.keyCode === 13 &&
+    //     document.querySelectorAll(".pac-item-selected").length == 0 &&
+    //     !e.triggered
+    //   ) {
+    //     e.preventDefault();
+    //     //  e.stopPropagation();
+    //     google.maps.event.trigger(this, "keydown", { keyCode: 40 });
+    //     google.maps.event.trigger(this, "keydown", {
+    //       keyCode: 13,
+    //       triggered: true
+    //     });
+    //   }
+    // });
+
     // HACK TO PREVENT AUTOCOMPLETE
     var observerHack = new MutationObserver(function() {
       observerHack.disconnect();
@@ -96,6 +112,10 @@
           throw new Error(err);
         });
     }
+  };
+
+  let checkAddress = e => {
+    if (!autoComplete.getPlace()) address = "";
   };
 </script>
 
@@ -216,6 +236,7 @@
       <input
         bind:this={autoCompleteInput}
         bind:value={address}
+        on:change={checkAddress}
         name="address"
         type="text"
         id="address"
