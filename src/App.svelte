@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { baseURL } from "./main.js";
+  import { baseURL } from "./constants.js";
 
   console.log(baseURL);
   export let namePiano;

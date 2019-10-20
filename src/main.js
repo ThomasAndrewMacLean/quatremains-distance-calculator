@@ -3,11 +3,10 @@ import 'whatwg-fetch'
 import 'url-search-params-polyfill'
 
 import App from './App.svelte'
-
-export const baseURL = 'http://localhost:3000'
+import { baseURL } from './constants.js'
 
 const searchParams = new URLSearchParams(window.location.search)
-const namePiano = (searchParams.get('piano') || 'yamaha-cfx')
+const namePiano = searchParams.get('piano') || 'yamaha-cfx'
 const language = searchParams.get('language')
 fetch(baseURL + '/labels/' + language)
     .then(x => x.json())
