@@ -78,6 +78,8 @@
       fetch(baseURL + "/getDistance", {
         method: "POST",
         headers: {
+          "Access-Control-Allow-Origin":
+            "*",
           Accept: "application/json",
           "Content-Type": "application/json"
         },
@@ -96,7 +98,6 @@
             submitButton.disabled = false;
 
             partOneOfFormComplete = true;
-
           }
         })
         .catch(err => {
