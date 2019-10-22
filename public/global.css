@@ -5,6 +5,7 @@
     --colour-white: #fff;
     --colour-text: #374b5d;
     --colour-gold: #b2a160;
+    --colour-light-gold: #C9BE95;
 }
 
 
@@ -179,4 +180,39 @@ button.secondary-btn:hover {
     border-top: 1px solid #e6e6e6;
     font-size: 11px;
     color: #999;
+}
+
+footer {
+    background: var(--colour-gold);
+    color: var(--colour-white);
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 100px;
+    padding: 50px;
+
+}
+
+footer>div {
+    width: 65%;
+    float: right;
+    max-width: 500px;
+}
+
+.price {
+    background: var(--colour-light-gold);
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    font-size: 20px;
+    float: right;
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    color: var(--colour-white);
+}
+
+.price:before {
+    content: "€ ";
+    padding-right: 10px;
 }
