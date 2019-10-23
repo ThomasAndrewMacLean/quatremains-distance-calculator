@@ -359,7 +359,7 @@
     {#if formComplete}
         <main>
             <p>
-                {labels.summary || 'Thanks for filling in the form, you will receive a email once the reservation has been confirmed'}
+                {@html labels.summary || 'Thanks for filling in the form, you will receive a email once the reservation has been confirmed'}
             </p>
 
             <ul>
