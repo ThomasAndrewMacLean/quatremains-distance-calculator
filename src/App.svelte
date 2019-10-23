@@ -12,7 +12,7 @@
     let email = ''
     let date
     let address = ''
-    let price = 150
+    let price = 0
     let autoComplete
     let autoCompleteInput
     let submitButton
