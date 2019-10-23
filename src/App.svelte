@@ -2,7 +2,6 @@
     import { onMount } from 'svelte'
     import { baseURL } from './constants.js'
 
-    console.log(baseURL)
     export let namePiano
     export let labels = {}
     let formComplete = false
@@ -12,7 +11,7 @@
     let email = ''
     let date
     let address = ''
-    let price = 0
+    let price = 150
     let autoComplete
     let autoCompleteInput
     let submitButton
@@ -29,7 +28,7 @@
                 autoCompleteInput,
                 {
                     componentRestrictions: {
-                        country: ['be', 'nl', 'fr', 'de'],
+                        country: ['be'],
                     },
                 }
             )
@@ -64,7 +63,7 @@
     })
     let submit = e => {
         e.preventDefault()
-        console.log(autoComplete.getPlace())
+        //console.log(autoComplete.getPlace())
 
         if (dateReserved.includes(date)) return
 
@@ -126,6 +125,7 @@
                     address,
                     telephone,
                     message,
+                    price,
                 }),
             })
                 .then(x => {
@@ -148,9 +148,6 @@
                                 address,
                                 telephone,
                                 message,
-                            }).then(x => {
-                                // CHECK IF MAIL WAS SENT
-                                console.log(x)
                             }),
                         })
                     }
@@ -266,7 +263,7 @@
                             required />
                         {#if dateReserved.includes(date)}
                             <span class="warning">
-                                Piano not available on this date
+                                {labels.unavailable || 'Piano not available on this date'}
                             </span>
                         {/if}
                     </div>
@@ -300,7 +297,12 @@
                     autocomplete="off" />
 
                 {#if price}
-                    <span class="price">{price}</span>
+                    <span class="price">
+                        <span>{Math.ceil(price)}</span>
+                        <span class="price-excl">
+                            {Math.ceil(price * 1.21)} incl.)
+                        </span>
+                    </span>
                 {/if}
 
                 {#if partOneOfFormComplete}
@@ -343,11 +345,11 @@
                         id="calculate-button">
                         {partOneOfFormComplete ? labels.rent || 'Rent' : labels.calculate || 'Calculate'}
                     </button>
-                    {#if partOneOfFormComplete}
+                    <!-- {#if partOneOfFormComplete}
                         <button type="button" class="secondary-btn">
                             {labels.cancel || 'Cancel'}
                         </button>
-                    {/if}
+                    {/if} -->
                 </div>
             </form>
 
@@ -356,13 +358,12 @@
     {#if formComplete}
         <main>
             <p>
-                {labels.thanksForRenting || 'Thanks for filling in the form, you will receive a email once the reservation has been confirmed'}
+                {labels.summary || 'Thanks for filling in the form, you will receive a email once the reservation has been confirmed'}
             </p>
 
             <ul>
-                <li>{firstname} {lastname}</li>
-                <li>{address} {date}</li>
                 <li>{namePiano}</li>
+                <li>{address} {date}</li>
             </ul>
 
         </main>
@@ -377,5 +378,9 @@
             </div>
         </footer>
     {/if}
+
+    <div class="disclaimer">
+        {@html labels.disclaimer}
+    </div>
 
 </div>

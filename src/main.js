@@ -6,7 +6,7 @@ import App from './App.svelte'
 import { baseURL } from './constants.js'
 
 const searchParams = new URLSearchParams(window.location.search)
-const namePiano = searchParams.get('piano') || 'yamaha-cfx'
+const namePiano = searchParams.get('piano') || 'yamaha-S3X'
 const language = searchParams.get('language')
 fetch(baseURL + '/labels/' + language)
     .then(x => x.json())
