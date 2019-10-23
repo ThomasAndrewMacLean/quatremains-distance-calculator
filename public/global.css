@@ -236,3 +236,7 @@ footer>div {
     line-height: 16px;
     margin-top: 40px;
 }
+
+.quote-author {
+    text-transform: uppercase;
+}

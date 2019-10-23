@@ -1,9 +1,10 @@
 <script>
     import { onMount } from 'svelte'
-    import { baseURL } from './constants.js'
+    import { baseURL, quotes } from './constants.js'
 
     export let namePiano
     export let labels = {}
+    let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let formComplete = false
     let partOneOfFormComplete = false
     let firstname = ''
@@ -369,12 +370,8 @@
         </main>
         <footer>
             <div>
-                <p>
-                    The typewriting machine, when played with expression, is no
-                    more annoying than the piano when played by a sister or near
-                    relation.
-                </p>
-                <span>OSCAR WILDE</span>
+                <p>{quote.q}</p>
+                <span class="quote-author">{quote.a}</span>
             </div>
         </footer>
     {/if}
