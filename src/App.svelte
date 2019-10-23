@@ -4,6 +4,8 @@
 
     export let namePiano
     export let labels = {}
+    
+    console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let formComplete = false
     let partOneOfFormComplete = false
