@@ -4,6 +4,8 @@
 
     export let namePiano
     export let labels = {}
+    
+    console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let formComplete = false
     let partOneOfFormComplete = false
@@ -200,7 +202,7 @@
             <span class="piano-name">{namePiano.replace('-', ' ')}</span>
         </h2>
         <h4>
-            {formComplete ? labels.summary || 'Summary' : labels.subtitle || 'FILL IN THIS FORM TO GET AN APPROXIMATION OF THE PRICE'}
+            {@html formComplete ? labels.summary || 'Summary' : labels.subtitle || 'FILL IN THIS FORM TO GET AN APPROXIMATION OF THE PRICE'}
         </h4>
     </header>
 
@@ -216,7 +218,7 @@
                 <div class="input-row">
                     <div class="input-wrap">
                         <label for="firstname">
-                            {labels.firstName || 'First name'}
+                            {labels.firstname || 'First name'}
                             <span>*</span>
                         </label>
                         <input
@@ -229,7 +231,7 @@
 
                     <div class="input-wrap">
                         <label for="lastname">
-                            {labels.lastName || 'Last name'}
+                            {labels.lastname || 'Last name'}
                             <span>*</span>
                         </label>
                         <input
@@ -299,7 +301,7 @@
 
                 {#if partOneOfFormComplete}
                     <h4>
-                        {labels.fillInDetails || 'Fill in the rest of these details to rent the instrument.'}
+                        {labels.fillindetails || 'Fill in the rest of these details to rent the instrument.'}
                     </h4>
 
                     <div class="input-row">
@@ -349,10 +351,6 @@
     {/if}
     {#if formComplete}
         <main>
-            <p>
-                {@html labels.summary || 'Thanks for filling in the form, you will receive a email once the reservation has been confirmed'}
-            </p>
-
             <ul>
                 <li>{namePiano}</li>
                 <li>{address} {date}</li>
