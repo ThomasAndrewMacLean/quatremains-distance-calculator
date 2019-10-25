@@ -9,14 +9,8 @@
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let formComplete = false
     let partOneOfFormComplete = false
-    let firstname = ''
-    let lastname = ''
-    let email = ''
-    let date
-    let street = ''
-    let number = ''
-    let postcode = ''
-    let city = ''
+
+    let formData = {}
     let price = 0
 
     let submitButton
@@ -29,22 +23,8 @@
 
     let submit = e => {
         e.preventDefault()
-        //console.log(autoComplete.getPlace())
-
         if (dateReserved.includes(date)) return
 
-        const addressData = autoComplete.getPlace()
-
-        if (!addressData) {
-            clickOnAddressError = true
-            return
-        }
-
-        let addressFormatted = addressData.formatted_address
-        const latLng =
-            addressData.geometry.location.lat() +
-            ',' +
-            addressData.geometry.location.lng()
         submitButton.disabled = true
 
         if (!partOneOfFormComplete) {
@@ -56,13 +36,7 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    firstname,
-                    piano: namePiano,
-                    lastname,
-                    email,
-                    date,
-                    address: addressFormatted,
-                    latLng,
+                    formData,
                 }),
             })
                 .then(y => y.json())
@@ -83,15 +57,7 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    firstname,
-                    piano: namePiano,
-                    lastname,
-                    email,
-                    date,
-                    address,
-                    telephone,
-                    message,
-                    price,
+                    formData,
                 }),
             })
                 .then(x => {
@@ -207,7 +173,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={firstname}
+                            bind:value={formData.firstname}
                             name="firstname"
                             type="text"
                             id="firstname"
@@ -220,7 +186,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={lastname}
+                            bind:value={formData.lastname}
                             name="lastname"
                             type="text"
                             id="lastname"
@@ -236,7 +202,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={email}
+                            bind:value={formData.email}
                             name="email"
                             type="email"
                             id="email"
@@ -252,12 +218,12 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={date}
+                            bind:value={formData.date}
                             name="date"
                             type="date"
                             id="date"
                             required />
-                        {#if dateReserved.includes(date)}
+                        {#if dateReserved.includes(formData.date)}
                             <span class="warning">
                                 {labels.unavailable || 'Piano not available on this date'}
                             </span>
@@ -272,7 +238,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={street}
+                            bind:value={formData.street}
                             name="street"
                             type="text"
                             id="street"
@@ -285,7 +251,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={number}
+                            bind:value={formData.number}
                             name="number"
                             type="text"
                             id="number"
@@ -300,7 +266,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={postcode}
+                            bind:value={formData.postcode}
                             name="postcode"
                             type="text"
                             id="postcode"
@@ -313,7 +279,7 @@
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={city}
+                            bind:value={formData.city}
                             name="city"
                             type="text"
                             id="city"
@@ -342,6 +308,7 @@
                                 <span>*</span>
                             </label>
                             <input
+                                bind:value={formData.telephone}
                                 name="telephone"
                                 type="telephone"
                                 id="telephone"
@@ -356,7 +323,10 @@
                                 {labels.message || 'Message'}
                                 <span>*</span>
                             </label>
-                            <textarea id="message" name="message" />
+                            <textarea
+                                bind:value={formData.message}
+                                id="message"
+                                name="message" />
                         </div>
 
                     </div>
@@ -365,7 +335,7 @@
                 <div class="button-wrap">
                     <button
                         bind:this={submitButton}
-                        class={dateReserved.includes(date) ? 'disabled' : ''}
+                        class={dateReserved.includes(formData.date) ? 'disabled' : ''}
                         type="submit"
                         id="calculate-button">
                         {partOneOfFormComplete ? labels.rent || 'Rent' : labels.calculate || 'Calculate'}
@@ -384,7 +354,7 @@
         <main>
             <ul>
                 <li>{namePiano}</li>
-                <li>{date}</li>
+                <li>{formData.date}</li>
             </ul>
 
         </main>
