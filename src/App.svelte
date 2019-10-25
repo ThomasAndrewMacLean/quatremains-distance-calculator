@@ -13,7 +13,10 @@
     let lastname = ''
     let email = ''
     let date
-    let address = ''
+    let street = ''
+    let number = ''
+    let postcode = ''
+    let city = ''
     let price = 0
 
     let submitButton
@@ -138,6 +141,12 @@
     .input-wrap {
         width: 47%;
     }
+    .input-wrap.big {
+        width: 67%;
+    }
+    .input-wrap.small {
+        width: 27%;
+    }
     .input-row > .input-wrap:first-of-type {
         margin-right: 6%;
     }
@@ -220,6 +229,23 @@
                 </div>
 
                 <div class="input-row">
+
+                    <div class="input-wrap">
+                        <label for="email">
+                            {labels.email || 'Email'}
+                            <span>*</span>
+                        </label>
+                        <input
+                            bind:value={email}
+                            name="email"
+                            type="email"
+                            id="email"
+                            required />
+                    </div>
+                </div>
+
+                <h5>{labels.eventinformation || 'Event information'}</h5>
+                <div class="input-row">
                     <div class="input-wrap date-input">
                         <label for="date">
                             {labels.date || 'Date'}
@@ -237,34 +263,64 @@
                             </span>
                         {/if}
                     </div>
+                </div>
 
-                    <div class="input-wrap">
-                        <label for="email">
-                            {labels.email || 'Email'}
+                <div class="input-row">
+                    <div class="input-wrap big">
+                        <label for="street">
+                            {labels.street || 'Street'}
                             <span>*</span>
                         </label>
                         <input
-                            bind:value={email}
-                            name="email"
-                            type="email"
-                            id="email"
+                            bind:value={street}
+                            name="street"
+                            type="text"
+                            id="street"
                             required />
+
+                    </div>
+                    <div class="input-wrap small">
+                        <label for="number">
+                            {labels.number || 'Number'}
+                            <span>*</span>
+                        </label>
+                        <input
+                            bind:value={number}
+                            name="number"
+                            type="text"
+                            id="number"
+                            required />
+
                     </div>
                 </div>
+                <div class="input-row">
+                    <div class="input-wrap small">
+                        <label for="postcode">
+                            {labels.postcode || 'Postcode'}
+                            <span>*</span>
+                        </label>
+                        <input
+                            bind:value={postcode}
+                            name="postcode"
+                            type="text"
+                            id="postcode"
+                            required />
 
-                <h5>{labels.eventinformation || 'Event information'}</h5>
-                <label for="plaatsnaam">
-                    {labels.address || 'Type in your address'}
-                    <span>*</span>
-                </label>
-                <input
-                    bind:value={address}
-                    name="address"
-                    type="text"
-                    id="address"
-                    required
-                    autocomplete="off" />
+                    </div>
+                    <div class="input-wrap big">
+                        <label for="city">
+                            {labels.city || 'City'}
+                            <span>*</span>
+                        </label>
+                        <input
+                            bind:value={city}
+                            name="city"
+                            type="text"
+                            id="city"
+                            required />
 
+                    </div>
+                </div>
                 {#if price}
                     <span class="price">
                         <span>{Math.ceil(price)}</span>
@@ -328,7 +384,7 @@
         <main>
             <ul>
                 <li>{namePiano}</li>
-                <li>{address} {date}</li>
+                <li>{date}</li>
             </ul>
 
         </main>
