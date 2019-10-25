@@ -37,6 +37,7 @@
                 },
                 body: JSON.stringify({
                     formData,
+                    piano: namePiano
                 }),
             })
                 .then(y => y.json())
