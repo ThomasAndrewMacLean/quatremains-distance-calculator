@@ -1,9 +1,11 @@
 <script>
     import { onMount } from 'svelte'
     import { baseURL, quotes } from './constants.js'
+    import { getDateToday } from './functions.js'
 
     export let namePiano
     export let labels = {}
+    export let live = false
 
     console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
@@ -17,7 +19,7 @@
     let clickOnAddressError = false
     let dateReserved = []
 
-    fetch(baseURL + '/available/' + namePiano)
+    fetch(baseURL + '/available/' + namePiano + '/' + live)
         .then(x => x.json())
         .then(data => (dateReserved = data))
 
@@ -38,7 +40,10 @@
                 body: JSON.stringify({
                     formData,
                     piano: namePiano,
-                    price: labels.prijsperkilometer
+                    prijsperkilometer: labels.prijsperkilometer,
+                    calculateDistance: !labels.gratislevering
+                        .split(';')
+                        .includes(formData.postcode),
                 }),
             })
                 .then(y => y.json())
@@ -90,11 +95,6 @@
                     throw new Error(err)
                 })
         }
-    }
-
-    let checkAddress = e => {
-        console.log(autoComplete.getPlace())
-        if (!autoComplete.getPlace()) address = ''
     }
 </script>
 
@@ -224,6 +224,7 @@
                             name="date"
                             type="date"
                             id="date"
+                            min={getDateToday()}
                             required />
                         {#if dateReserved.includes(formData.date)}
                             <span class="warning">

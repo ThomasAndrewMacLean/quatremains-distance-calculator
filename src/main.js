@@ -8,7 +8,8 @@ import { baseURL } from './constants.js'
 const searchParams = new URLSearchParams(window.location.search)
 const namePiano = searchParams.get('piano') || 'yamaha-S3X'
 const language = searchParams.get('language')
-fetch(baseURL + '/labels/' + language)
+const live = searchParams.get('live')
+fetch(baseURL + '/labels/' + language + '/' + live)
     .then(x => x.json())
     .then(labels => {
         new App({
@@ -16,6 +17,7 @@ fetch(baseURL + '/labels/' + language)
             props: {
                 namePiano,
                 labels,
+                live
             },
         })
     })
