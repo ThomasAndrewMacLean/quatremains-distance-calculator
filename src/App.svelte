@@ -34,21 +34,6 @@
                 }
             )
         }
-        // google.maps.event.addDomListener(autoCompleteInput, "keydown", function(e) {
-        //   if (
-        //     e.keyCode === 13 &&
-        //     document.querySelectorAll(".pac-item-selected").length == 0 &&
-        //     !e.triggered
-        //   ) {
-        //     e.preventDefault();
-        //     //  e.stopPropagation();
-        //     google.maps.event.trigger(this, "keydown", { keyCode: 40 });
-        //     google.maps.event.trigger(this, "keydown", {
-        //       keyCode: 13,
-        //       triggered: true
-        //     });
-        //   }
-        // });
 
         // HACK TO PREVENT AUTOCOMPLETE
         if (autoCompleteInput) {
@@ -166,6 +151,9 @@
 </script>
 
 <style>
+    .piano-name {
+        font-weight: 100;
+    }
     .input-row {
         display: flex;
         justify-content: space-between;
@@ -207,7 +195,10 @@
 
 <div class="container">
     <header>
-        <h2>{labels.title || 'Rent the'} {namePiano.replace('-', ' ')}</h2>
+        <h2>
+            {labels.title || 'Rent the'}
+            <span class="piano-name">{namePiano.replace('-', ' ')}</span>
+        </h2>
         <h4>
             {formComplete ? labels.summary || 'Summary' : labels.subtitle || 'FILL IN THIS FORM TO GET AN APPROXIMATION OF THE PRICE'}
         </h4>
