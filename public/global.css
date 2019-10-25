@@ -59,6 +59,26 @@ h2 {
     text-transform: uppercase;
 }
 
+
+h5 {
+    font-size: 16px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    letter-spacing: 1px;
+    position: relative;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+h5::after {
+    content: "";
+    height: 1px;
+    background: var(--colour-light-gold);
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
 .container {
     width: 90%;
     margin: 50px auto;
@@ -180,6 +200,10 @@ button.secondary-btn:hover {
     border-top: 1px solid #e6e6e6;
     font-size: 11px;
     color: #999;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
 }
 
 footer {

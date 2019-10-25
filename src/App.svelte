@@ -4,7 +4,7 @@
 
     export let namePiano
     export let labels = {}
-    
+
     console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let formComplete = false
@@ -15,8 +15,7 @@
     let date
     let address = ''
     let price = 0
-    let autoComplete
-    let autoCompleteInput
+
     let submitButton
     let clickOnAddressError = false
     let dateReserved = []
@@ -25,30 +24,6 @@
         .then(x => x.json())
         .then(data => (dateReserved = data))
 
-    onMount(() => {
-        if (autoCompleteInput) {
-            autoComplete = new google.maps.places.Autocomplete(
-                autoCompleteInput,
-                {
-                    componentRestrictions: {
-                        country: ['be'],
-                    },
-                }
-            )
-        }
-
-        // HACK TO PREVENT AUTOCOMPLETE
-        if (autoCompleteInput) {
-            var observerHack = new MutationObserver(function() {
-                observerHack.disconnect()
-                autoCompleteInput.autocomplete = 'new-password'
-            })
-            observerHack.observe(autoCompleteInput, {
-                attributes: true,
-                attributeFilter: ['autocomplete'],
-            })
-        }
-    })
     let submit = e => {
         e.preventDefault()
         //console.log(autoComplete.getPlace())
@@ -208,13 +183,14 @@
 
     {#if !formComplete}
         <main>
-            <p>
+            <p class="mb-3">
                 {labels.intro || `Avoid unnecessary risk and let Quatre Mains handle transportation of your
       precious piano. With utmost care we will transport your piano and if you
       wish tune it at destination.`}
             </p>
 
             <form on:submit={submit}>
+                <h5>{labels.clientinformation || 'Client information'}</h5>
                 <div class="input-row">
                     <div class="input-wrap">
                         <label for="firstname">
@@ -276,14 +252,13 @@
                     </div>
                 </div>
 
+                <h5>{labels.eventinformation || 'Event information'}</h5>
                 <label for="plaatsnaam">
                     {labels.address || 'Type in your address'}
                     <span>*</span>
                 </label>
                 <input
-                    bind:this={autoCompleteInput}
                     bind:value={address}
-                    on:change={checkAddress}
                     name="address"
                     type="text"
                     id="address"
