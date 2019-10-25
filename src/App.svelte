@@ -37,7 +37,8 @@
                 },
                 body: JSON.stringify({
                     formData,
-                    piano: namePiano
+                    piano: namePiano,
+                    price: labels.prijsperkilometer
                 }),
             })
                 .then(y => y.json())
