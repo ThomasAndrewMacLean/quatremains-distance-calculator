@@ -5,7 +5,6 @@
 
     export let namePiano
     export let labels = {}
-    export let live = false
 
     //console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
@@ -20,7 +19,7 @@
     let clickOnAddressError = false
     let dateReserved = []
 
-    fetch(baseURL + '/available/' + namePiano + '/' + live)
+    fetch(baseURL + '/available/' + namePiano)
         .then(x => x.json())
         .then(data => (dateReserved = data))
 
@@ -213,7 +212,7 @@
                             required />
                     </div>
 
-                        <div class="input-wrap">
+                    <div class="input-wrap">
                         <label for="company">
                             {labels.company || 'Company'}
                         </label>
@@ -221,8 +220,7 @@
                             bind:value={formData.company}
                             name="company"
                             type="text"
-                            id="company"
-                             />
+                            id="company" />
                     </div>
                 </div>
 
