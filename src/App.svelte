@@ -7,8 +7,9 @@
     export let labels = {}
     export let live = false
 
-    console.log(labels)
+    // console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
+
     let formComplete = false
     let partOneOfFormComplete = false
 
@@ -30,6 +31,7 @@
         submitButton.disabled = true
 
         if (!partOneOfFormComplete) {
+            //console.log(formData)
             fetch(baseURL + '/getDistance', {
                 method: 'POST',
                 headers: {
@@ -41,7 +43,7 @@
                     formData,
                     piano: namePiano,
                     prijsperkilometer: labels.prijsperkilometer,
-                    calculateDistance: !labels.gratislevering
+                    calculateDistance: !(labels.gratislevering || '')
                         .split(';')
                         .includes(formData.postcode),
                 }),
@@ -356,21 +358,26 @@
     {#if formComplete}
         <main>
             <ul>
-                <li>{namePiano}</li>
-                <li>{formData.date}</li>
+                <li>{namePiano.replace('-', ' ')}</li>
+                <li>
+                    {Intl.DateTimeFormat('nl-be').format(new Date(formData.date || '2019-10-30'))}
+                </li>
+                    <li>
+                    {formData.street} {formData.number} {formData.postcode} {formData.city}
+                </li>
             </ul>
 
         </main>
-        <footer>
+        <!-- <footer>
             <div>
                 <p>{quote.q}</p>
                 <span class="quote-author">{quote.a}</span>
             </div>
-        </footer>
+        </footer> -->
     {/if}
 
     <div class="disclaimer">
-        {@html labels.disclaimer}
+        {@html labels.disclaimer || ''}
     </div>
 
 </div>

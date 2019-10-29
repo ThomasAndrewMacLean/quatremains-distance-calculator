@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="./bundle.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700&display=swap"
         rel="stylesheet">
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlZNtBDRqdNN8v7yX2yleYTRoCZLNf9C8&libraries=places">
-    </script>
     <script src="https://browser.sentry-cdn.com/5.7.1/bundle.min.js"
         integrity="sha384-KMv6bBTABABhv0NI+rVWly6PIRvdippFEgjpKyxUcpEmDWZTkDOiueL5xW+cztZZ" crossorigin="anonymous">
     </script>
@@ -23,9 +20,13 @@
 
 <body>
     <script>
-        Sentry.init({
-            dsn: 'https://19691ca91e044426b15f5c46da9e567b@sentry.io/1782791'
-        });
+        console.log(typeof Sentry !== "undefined")
+        if (typeof Sentry !== "undefined") {
+
+            Sentry.init({
+                dsn: 'https://19691ca91e044426b15f5c46da9e567b@sentry.io/1782791'
+            });
+        }
     </script>
 </body>
 
