@@ -22,14 +22,7 @@ fetch(baseURL + '/labels/' + language + '/' + live)
         })
     })
     .catch(err => {
-        new App({
-            target: document.body,
-            props: {
-                namePiano,
-
-                live,
-            },
-        })
+      
         // eslint-disable-next-line no-console
         console.error(err)
         throw Error(err)
