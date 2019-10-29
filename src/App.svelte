@@ -81,14 +81,12 @@
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                firstname,
-                                piano: namePiano,
-                                lastname,
-                                email,
-                                date,
-                                address,
-                                telephone,
-                                message,
+                               formData,
+                            piano: namePiano,
+                            prijsperkilometer: labels.prijsperkilometer,
+                            calculateDistance: !(labels.gratislevering || '')
+                        .split(';')
+                        .includes(formData.postcode),
                             }),
                         })
                     }
