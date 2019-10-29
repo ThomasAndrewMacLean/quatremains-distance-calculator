@@ -212,6 +212,18 @@
                             id="email"
                             required />
                     </div>
+
+                        <div class="input-wrap">
+                        <label for="company">
+                            {labels.company || 'Company'}
+                        </label>
+                        <input
+                            bind:value={formData.company}
+                            name="company"
+                            type="text"
+                            id="company"
+                             />
+                    </div>
                 </div>
 
                 <h5>{labels.eventinformation || 'Event information'}</h5>
