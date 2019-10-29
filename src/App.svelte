@@ -7,7 +7,7 @@
     export let labels = {}
     export let live = false
 
-    // console.log(labels)
+    //console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
 
     let formComplete = false
@@ -81,19 +81,20 @@
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                               formData,
-                            piano: namePiano,
-                            prijsperkilometer: labels.prijsperkilometer,
-                            calculateDistance: !(labels.gratislevering || '')
-                        .split(';')
-                        .includes(formData.postcode),
+                                formData,
+                                piano: namePiano,
+                                prijsperkilometer: labels.prijsperkilometer,
+                                calculateDistance: !(
+                                    labels.gratislevering || ''
+                                )
+                                    .split(';')
+                                    .includes(formData.postcode),
                             }),
                         })
                     }
                 })
                 .catch(err => {
                     throw new Error(err)
-                    
                 })
         }
     }
@@ -361,8 +362,9 @@
                 <li>
                     {Intl.DateTimeFormat('nl-be').format(new Date(formData.date || '2019-10-30'))}
                 </li>
-                    <li>
-                    {formData.street} {formData.number} {formData.postcode} {formData.city}
+                <li>
+                    {formData.street} {formData.number} {formData.postcode}
+                    {formData.city}
                 </li>
             </ul>
 
