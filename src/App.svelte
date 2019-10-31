@@ -4,7 +4,9 @@
     import { getDateToday } from './functions.js'
 
     export let namePiano
+    let selectedPiano
     export let labels = {}
+    export let language
 
     //console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
@@ -19,10 +21,26 @@
     let submitButton
     let clickOnAddressError = false
     let dateReserved = []
+    let allPianos = []
+    if (namePiano) {
+        checkAvailable(namePiano)
+    } else {
+        fetch(baseURL + '/pianos')
+            .then(x => x.json())
+            .then(data => (allPianos = data.pianos))
+    }
 
-    fetch(baseURL + '/available/' + namePiano)
-        .then(x => x.json())
-        .then(data => (dateReserved = data))
+    const changeSelectedPiano = () => {
+        namePiano = allPianos[selectedPiano]
+
+        checkAvailable(namePiano)
+    }
+
+    const checkAvailable = piano => {
+        fetch(baseURL + '/available/' + piano)
+            .then(x => x.json())
+            .then(data => (dateReserved = data))
+    }
 
     let submit = e => {
         e.preventDefault()
@@ -74,7 +92,7 @@
                         submitButton.disabled = false
                         formComplete = true
 
-                        fetch(baseURL + '/mail', {
+                        fetch(baseURL + '/mail/' + language, {
                             method: 'POST',
                             headers: {
                                 Accept: 'application/json',
@@ -83,6 +101,7 @@
                             body: JSON.stringify({
                                 formData,
                                 piano: namePiano,
+                                template: labels.template,
                                 prijsperkilometer: labels.prijsperkilometer,
                                 calculateDistance: !(
                                     labels.gratislevering || ''
@@ -113,6 +132,9 @@
     }
     .input-wrap.big {
         width: 67%;
+    }
+    .input-wrap.full {
+        width: 100%;
     }
     .input-wrap.small {
         width: 27%;
@@ -200,6 +222,28 @@
                     </p>
 
                     <form on:submit={submit}>
+
+                        {#if allPianos.length}
+                            <div class="input-wrap full">
+                                <label for="piano">
+                                    {labels.piano || 'Piano'}
+                                    <span>*</span>
+                                </label>
+                                <select
+                                    bind:value={selectedPiano}
+                                    required
+                                    id="piano"
+                                    name="piano"
+                                    on:change={() => changeSelectedPiano()}>
+                                    <option
+                                        hidden
+                                        label={labels.selectpiano || ''} />
+                                    {#each allPianos as p, index}
+                                        <option value={index}>{p}</option>
+                                    {/each}
+                                </select>
+                            </div>
+                        {/if}
                         <h5>
                             {labels.clientinformation || 'Client information'}
                         </h5>
@@ -377,7 +421,8 @@
                                     <textarea
                                         bind:value={formData.message}
                                         id="message"
-                                        name="message" />
+                                        name="message"
+                                        required />
                                 </div>
 
                             </div>

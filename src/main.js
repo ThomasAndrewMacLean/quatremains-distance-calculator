@@ -6,7 +6,7 @@ import App from './App.svelte'
 import { baseURL } from './constants.js'
 
 const searchParams = new URLSearchParams(window.location.search)
-const namePiano = searchParams.get('piano') || 'yamaha-S3X'
+const namePiano = searchParams.get('piano') || ''
 const language = searchParams.get('language') || 'NL'
 //const live = searchParams.get('live') || 'false'
 fetch(baseURL + '/labels/' + language)
@@ -17,6 +17,7 @@ fetch(baseURL + '/labels/' + language)
             props: {
                 namePiano,
                 labels,
+                language,
             },
         })
     })
