@@ -8,6 +8,15 @@
     --colour-light-gold: #C9BE95;
 }
 
+.select-wrap {
+    position: relative;
+}
+
+.select-wrap::after {
+    /* content: "v";
+    position: absolute; */
+
+}
 
 * {
     box-sizing: border-box;

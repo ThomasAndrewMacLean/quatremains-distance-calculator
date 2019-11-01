@@ -103,6 +103,7 @@
                                 formData,
                                 piano: namePiano,
                                 template: labels.template,
+                                subject: labels.subject,
                                 prijsperkilometer: labels.prijsperkilometer,
                                 calculateDistance: !(
                                     labels.gratislevering || ''
@@ -230,19 +231,21 @@
                                     {labels.piano || 'Piano'}
                                     <span>*</span>
                                 </label>
-                                <select
-                                    bind:value={selectedPiano}
-                                    required
-                                    id="piano"
-                                    name="piano"
-                                    on:change={() => changeSelectedPiano()}>
-                                    <option
-                                        hidden
-                                        label={labels.selectpiano || ''} />
-                                    {#each allPianos as p, index}
-                                        <option value={index}>{p}</option>
-                                    {/each}
-                                </select>
+                                <div class="select-wrap">
+                                    <select
+                                        bind:value={selectedPiano}
+                                        required
+                                        id="piano"
+                                        name="piano"
+                                        on:change={() => changeSelectedPiano()}>
+                                        <option
+                                            hidden
+                                            label={labels.selectpiano || ''} />
+                                        {#each allPianos as p, index}
+                                            <option value={index}>{p}</option>
+                                        {/each}
+                                    </select>
+                                </div>
                             </div>
                         {/if}
                         <h5>
