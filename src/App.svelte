@@ -16,8 +16,8 @@
 
     let showForm = false
     let formData = {}
-    let price = 100
-    let priceDiscount = 80
+    let price = 0
+    let priceDiscount = 0
 
     let submitButton
     let clickOnAddressError = false
