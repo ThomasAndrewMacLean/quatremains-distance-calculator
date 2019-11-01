@@ -256,7 +256,7 @@ footer>div {
     max-width: 500px;
 }
 
-.price {
+.price-wrap {
     background: var(--colour-light-gold);
     height: 50px;
     display: inline-flex;
@@ -269,9 +269,25 @@ footer>div {
     color: var(--colour-white);
 }
 
+.discount::after {
+    width: 110%;
+    content: "";
+    height: 3px;
+    top: 44%;
+    left: -3px;
+    position: absolute;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    background: #f3f1e8;
+}
+
+.discount {
+    position: relative;
+    margin-right: 15px;
+}
+
 .price:before {
     content: "€ ";
-    padding-right: 10px;
+    /* padding-right: 10px; */
 }
 
 .price-excl {

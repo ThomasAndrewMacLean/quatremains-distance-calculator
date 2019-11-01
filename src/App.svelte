@@ -16,7 +16,8 @@
 
     let showForm = false
     let formData = {}
-    let price = 0
+    let price = 100
+    let priceDiscount = 80
 
     let submitButton
     let clickOnAddressError = false
@@ -287,6 +288,7 @@
                                     name="email"
                                     type="email"
                                     id="email"
+                                    autocomplete="email"
                                     required />
                             </div>
 
@@ -316,6 +318,7 @@
                                     name="date"
                                     type="date"
                                     id="date"
+                                    placeholder="dd/mm/yyyy"
                                     min={getDateToday()}
                                     required />
                                 {#if dateReserved.includes(formData.date)}
@@ -383,10 +386,18 @@
                             </div>
                         </div>
                         {#if price}
-                            <span class="price">
-                                <span>{Math.ceil(price)}</span>
+                            <span class="price-wrap">
+                                {#if priceDiscount}
+                                    <span class="discount price">
+                                        {Math.ceil(price)}
+                                    </span>
+                                {/if}
+                                <span class="price">
+                                    {priceDiscount ? Math.ceil(priceDiscount) : Math.ceil(price)}
+                                </span>
                                 <span class="price-excl">
-                                    {Math.ceil(price * 1.21)} incl.)
+                                    {priceDiscount ? Math.ceil(priceDiscount * 1.21) : Math.ceil(price * 1.21)}
+                                    incl.)
                                 </span>
                             </span>
                         {/if}
