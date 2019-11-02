@@ -1,0 +1,28 @@
+<script>
+    window.addEventListener('message', function (e) {
+        const calculatorIframe = document.getElementById('calculator')
+        if (e.data === "open") {
+            calculatorIframe.style.height = "100vh"
+            calculatorIframe.style.position = "absolute";
+            calculatorIframe.style.width = "100vw"
+            calculatorIframe.style.top = "0px"
+            calculatorIframe.style.left = "0px"
+        }
+
+        if (e.data === "close") {
+            calculatorIframe.style.height = "inherit"
+            calculatorIframe.style.position = "inherit";
+            calculatorIframe.style.width = "inherit"
+            calculatorIframe.style.top = "inherit"
+            calculatorIframe.style.left = "inherit"
+        }
+    }, false);
+
+    let fullPath = "https://quatremains-calculator.netlify.com/"
+    const lang = document.cookie.includes("language=1") ? "EN" : "NL"
+    let piano = document.URL.split("/").slice(-1).pop();
+    if (document.URL.indexOf("concert-rental-all") === -1) {
+        piano = "";
+    }
+    document.getElementById("calculator").src = fullPath + "?language=" + lang + "&piano=" + piano + "&live=true";
+</script>

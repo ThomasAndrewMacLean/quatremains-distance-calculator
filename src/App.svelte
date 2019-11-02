@@ -70,6 +70,8 @@
                 .then(y => y.json())
                 .then(x => {
                     price = x.price
+                    priceDiscount = x.pricediscount
+                    formData.guid = x.guid
                     submitButton.disabled = false
 
                     partOneOfFormComplete = true
@@ -86,6 +88,11 @@
                 },
                 body: JSON.stringify({
                     formData,
+                    piano: namePiano,
+                    prijsperkilometer: labels.prijsperkilometer,
+                    calculateDistance: !(labels.gratislevering || '')
+                        .split(';')
+                        .includes(formData.postcode),
                 }),
             })
                 .then(x => {
