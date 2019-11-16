@@ -23,6 +23,14 @@
     let clickOnAddressError = false
     let dateReserved = []
     let allPianos = []
+
+    const checkAvailable = piano => {
+        fetch(baseURL + '/available/' + piano)
+            .then(x => x.json())
+            .then(data => (dateReserved = data))
+    }
+
+
     if (namePiano) {
         checkAvailable(namePiano)
     } else {
@@ -37,12 +45,7 @@
         checkAvailable(namePiano)
     }
 
-    const checkAvailable = piano => {
-        fetch(baseURL + '/available/' + piano)
-            .then(x => x.json())
-            .then(data => (dateReserved = data))
-    }
-
+   
     let submit = e => {
         e.preventDefault()
         if (dateReserved.includes(date)) return
