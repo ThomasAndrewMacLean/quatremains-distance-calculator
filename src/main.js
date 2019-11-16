@@ -9,6 +9,7 @@ const searchParams = new URLSearchParams(window.location.search)
 const namePiano = searchParams.get('piano') || ''
 const language = searchParams.get('language') || 'NL'
 //const live = searchParams.get('live') || 'false'
+console.log(searchParams, namePiano, language)
 fetch(baseURL + '/labels/' + language)
     .then(x => x.json())
     .then(labels => {
