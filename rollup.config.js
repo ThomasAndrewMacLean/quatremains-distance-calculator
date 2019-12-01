@@ -1,5 +1,6 @@
 import svelte from 'rollup-plugin-svelte'
 import resolve from 'rollup-plugin-node-resolve'
+import polyfill from 'rollup-plugin-polyfill'
 import commonjs from 'rollup-plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
@@ -48,6 +49,7 @@ export default {
         babel({
             extensions: ['.js', '.mjs', '.html', '.svelte'],
         }),
+        polyfill(['nodep-date-input-polyfill']),
     ],
     watch: {
         clearScreen: false,

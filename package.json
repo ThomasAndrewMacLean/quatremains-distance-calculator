@@ -11,12 +11,14 @@
         "rollup-plugin-commonjs": "^10.0.0",
         "rollup-plugin-livereload": "^1.0.0",
         "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-polyfill": "^3.0.0",
         "rollup-plugin-svelte": "^5.0.3",
         "rollup-plugin-terser": "^4.0.4",
         "sirv-cli": "^0.4.4",
         "svelte": "^3.0.0"
     },
     "dependencies": {
+        "nodep-date-input-polyfill": "^5.2.0",
         "url-search-params-polyfill": "^7.0.0",
         "whatwg-fetch": "^3.0.0"
     },
