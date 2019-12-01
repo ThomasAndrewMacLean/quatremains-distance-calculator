@@ -112,7 +112,7 @@
                             body: JSON.stringify({
                                 formData,
                                 piano: namePiano,
-                                bevestiginsmail: labels.bevestiginsmail,
+                                bevestigingsmail: labels.bevestigingsmail,
                                 template: labels.template,
                                 subject: labels.subject,
                                 prijsperkilometer: labels.prijsperkilometer,
