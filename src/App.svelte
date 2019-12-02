@@ -331,8 +331,10 @@
                                     bind:value={formData.date}
                                     name="date"
                                     type="date"
+                                    lang="nl"
                                     id="date"
                                     placeholder="dd/mm/yyyy"
+                                    pattern="\d{1,2}/\d{1,2}/\d{4}"
                                     min={getDateToday()}
                                     required />
                                 {#if dateReserved.includes(formData.date)}
