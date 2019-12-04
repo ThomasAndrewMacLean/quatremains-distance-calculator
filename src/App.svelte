@@ -122,6 +122,27 @@
                                     .includes(formData.postcode),
                             }),
                         })
+
+                        fetch(baseURL + '/confirmmail/' + language, {
+                            method: 'POST',
+                            headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                formData,
+                                piano: namePiano,
+                                bevestigingsmail: labels.bevestigingsmail,
+                                template: labels.template,
+                                subject: labels.subject,
+                                prijsperkilometer: labels.prijsperkilometer,
+                                calculateDistance: !(
+                                    labels.gratislevering || ''
+                                )
+                                    .split(';')
+                                    .includes(formData.postcode),
+                            }),
+                        })
                     }
                 })
                 .catch(err => {
@@ -188,7 +209,7 @@
         <button
             on:click={() => {
                 showForm = true
-                window.top.postMessage('open' + iframeId, '*')
+                window.top.postMessage('open' + { iframeId }, '*')
             }}>
             {labels.calculate || 'Calculate'}
         </button>
@@ -198,7 +219,7 @@
             class="backdrop"
             on:click={() => {
                 showForm = false
-                window.top.postMessage('close' + iframeId, '*')
+                window.top.postMessage('close' + { iframeId }, '*')
             }} />
         <div
             class="container modal"
@@ -209,7 +230,7 @@
                 class="close-button"
                 on:click={() => {
                     showForm = false
-                    window.top.postMessage('close' + iframeId, '*')
+                    window.top.postMessage('close' + { iframeId }, '*')
                 }}>
                 x
             </span>
@@ -467,7 +488,7 @@
                                 class="secondary-btn"
                                 on:click={() => {
                                     showForm = false
-                                    window.top.postMessage('close' + iframeId, '*')
+                                    window.top.postMessage('close' + { iframeId }, '*')
                                 }}>
                                 {labels.cancel || 'Cancel'}
                             </button>
