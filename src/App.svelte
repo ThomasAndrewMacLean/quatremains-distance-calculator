@@ -7,6 +7,7 @@
     let selectedPiano
     export let labels = {}
     export let language
+    export let iframeId
 
     //console.log(labels)
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
@@ -30,7 +31,6 @@
             .then(data => (dateReserved = data))
     }
 
-
     if (namePiano) {
         checkAvailable(namePiano)
     } else {
@@ -45,7 +45,6 @@
         checkAvailable(namePiano)
     }
 
-   
     let submit = e => {
         e.preventDefault()
         if (dateReserved.includes(date)) return
@@ -189,7 +188,7 @@
         <button
             on:click={() => {
                 showForm = true
-                window.top.postMessage('open', '*')
+                window.top.postMessage('open' + iframeId, '*')
             }}>
             {labels.calculate || 'Calculate'}
         </button>
@@ -199,7 +198,7 @@
             class="backdrop"
             on:click={() => {
                 showForm = false
-                window.top.postMessage('close', '*')
+                window.top.postMessage('close' + iframeId, '*')
             }} />
         <div
             class="container modal"
@@ -210,7 +209,7 @@
                 class="close-button"
                 on:click={() => {
                     showForm = false
-                    window.top.postMessage('close', '*')
+                    window.top.postMessage('close' + iframeId, '*')
                 }}>
                 x
             </span>
@@ -334,7 +333,7 @@
                                     lang="nl"
                                     id="date"
                                     placeholder="dd/mm/yyyy"
-                                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                                    pattern="\d{(1, 2)}/\d{(1, 2)}/\d{4}"
                                     min={getDateToday()}
                                     required />
                                 {#if dateReserved.includes(formData.date)}
@@ -468,7 +467,7 @@
                                 class="secondary-btn"
                                 on:click={() => {
                                     showForm = false
-                                    window.top.postMessage('close', '*')
+                                    window.top.postMessage('close' + iframeId, '*')
                                 }}>
                                 {labels.cancel || 'Cancel'}
                             </button>
