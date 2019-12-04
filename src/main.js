@@ -8,7 +8,7 @@ import { baseURL } from './constants.js'
 const searchParams = new URLSearchParams(window.location.search)
 const namePiano = searchParams.get('piano') || ''
 const language = searchParams.get('language') || 'NL'
-const iframeId = searchParams.get('iframeId') || ''
+const iframeId = searchParams.get('iframeid') || ''
 //const live = searchParams.get('live') || 'false'
 //console.log(searchParams, namePiano, language)
 fetch(baseURL + '/labels/' + language)
@@ -20,7 +20,7 @@ fetch(baseURL + '/labels/' + language)
                 namePiano,
                 labels,
                 language,
-                iframeId
+                iframeId,
             },
         })
     })
