@@ -14,7 +14,7 @@
 
     let formComplete = false
     let partOneOfFormComplete = false
-
+    let loading = false
     let showForm = false
     let formData = {}
     let price = 0
@@ -50,7 +50,7 @@
         if (dateReserved.includes(date)) return
 
         submitButton.disabled = true
-
+        loading = true
         if (!partOneOfFormComplete) {
             //console.log(formData)
             fetch(baseURL + '/getDistance', {
@@ -75,7 +75,7 @@
                     priceDiscount = x.pricediscount
                     formData.guid = x.guid
                     submitButton.disabled = false
-
+                    loading = false
                     partOneOfFormComplete = true
                 })
                 .catch(err => {
@@ -100,6 +100,7 @@
                 .then(x => {
                     if (x.status === 200) {
                         submitButton.disabled = false
+                        loading = false
                         formComplete = true
 
                         fetch(baseURL + '/mail/' + language, {
@@ -201,6 +202,26 @@
 
     .date-input {
         position: relative;
+    }
+
+    .loading {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        border: 8px solid #fff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: var(--colour-text) var(--colour-background)
+            var(--colour-text) var(--colour-background);
+    }
+
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     }
 </style>
 
@@ -481,6 +502,9 @@
                                 class={dateReserved.includes(formData.date) ? 'disabled' : ''}
                                 type="submit"
                                 id="calculate-button">
+                                {#if loading}
+                                    <div class="loading" />
+                                {/if}
                                 {partOneOfFormComplete ? labels.rent || 'Rent' : labels.calculate || 'Calculate'}
                             </button>
                             <button
