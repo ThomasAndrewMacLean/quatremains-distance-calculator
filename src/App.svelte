@@ -195,7 +195,7 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        width: 100%;
+        width: 150%;
         text-align: center;
     }
 
