@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Quatre Mains Calculator</title>
+
+    <link rel="icon" type="image/png" href="./favicon.ico">
+    <link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./bundle.css">
+
+    <script src="https://browser.sentry-cdn.com/5.7.1/bundle.min.js"
+        integrity="sha384-KMv6bBTABABhv0NI+rVWly6PIRvdippFEgjpKyxUcpEmDWZTkDOiueL5xW+cztZZ" crossorigin="anonymous">
+    </script>
+    <script defer src="./bundle.js"></script>
+</head>
+
+<body>
+    <script>
+        Sentry.init({
+            dsn: 'https://19691ca91e044426b15f5c46da9e567b@sentry.io/1782791'
+        });
+    </script>
+
+    <script type="text/javascript">
+        // Send message to the top window (parent) at 500ms interval
+        // setInterval(function() {
+        //     // first parameter is the message to be passed
+        //     // second paramter is the domain of the parent 
+        //     // in this case "*" has been used for demo sake (denoting no preference)
+        //     // in production always pass the target domain for which the message is intended 
+        //     window.top.postMessage(document.body.scrollHeight, "*");
+        // }, 500); 
+    </script>
+</body>
+
+</html>
